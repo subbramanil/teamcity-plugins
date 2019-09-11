@@ -125,7 +125,8 @@ public abstract class AbstractVcsApi implements VcsApi {
             httpResponse.getEntity().writeTo(outputStream);
             String json = outputStream.toString(CharEncoding.UTF_8);
             throw new UnexpectedHttpStatusException(statusCode,
-                    "Failed to complete request. Status: " + httpResponse.getStatusLine() + '\n' + json);
+                    "Failed to complete request. Status: " + httpResponse.getStatusLine()
+                            + " for request: " + request.getRequestLine() + '\n' + json);
         }
 
         return httpResponse;
